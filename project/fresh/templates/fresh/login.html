@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<h1>Авторизация</h1>
+
+
+<div class="col-4">
+    <form id="add_form" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button form="add_form" type="submit" class="btn btn-primary mt-4">Авторизоваться</button>
+        <p><a href="{% url 'home' %}">Вернуться назад</a></p>
+    </form>
+</div>
+
+{% endblock %}

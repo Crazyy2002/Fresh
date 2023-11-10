@@ -1,0 +1,156 @@
+body {
+    background: #FFF;
+}
+
+aside {
+    float: left;
+    background: #98FB98;
+    width: 25%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #000;
+    border-right: 5px solid #CBE12A;
+}
+
+aside img {
+    width: 300px;
+    float: left;
+}
+
+aside .logo {
+    font-size: 40px;
+    margin-left: 300px;
+    font-weight: bold;
+    position: relative;
+    top: -5px;
+}
+
+aside h3 {
+    margin-left: 50px;
+    Font-size: 35px;
+}
+
+aside ul {
+    list-style: none
+}
+
+a {
+    text-decoration: none
+}
+
+aside ul li {
+    color: #000;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #8B0000;
+    transform: scale(1.05)
+}
+
+main .features {
+    float: left;
+    Color: #000;
+    margin-top: 100px;
+    text-align: center;
+    width: 75%;
+}
+
+main .features h1 {
+    font-size: 50px;
+}
+
+main .features p {
+    max-width: 400px;
+    margin: 20px auto
+}
+
+main .mb-3 {
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+form {
+
+    background: #FFFFFF;
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 400px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+form {
+    margin-left: 10%;
+    width: 400px;
+    margin-top: 50px;
+}
+
+.alert-warning {
+    float: left;
+    clear: both;
+    width: 400px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+main .xolod {
+    margin-left: 515px;
+}
+
+main .moroz {
+    margin-left: 500px;
+}
+
+main .shaf {
+    margin-left: 500px;
+}
+
+main .picture img {
+    width: auto;
+    height: 400px;
+}
+
+.kay-pho-du-font {
+    font-family: 'Kay Pho Du', sans-serif;
+}
+
+.has-error .form-control {
+    border-color: #ff0000; /* Красная рамка для поля с ошибкой */
+}
+
+.has-error .invalid-feedback {
+    color: #ff0000; /* Красный цвет для текста ошибки */
+}
+
+.user-username {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    padding: 5px;
+    background-color: #ffffff; /* Можно удалить, если фон не нужен */
+}
+
+
+.col-4 {
+    margin: 0 auto; /* Устанавливаем автоматичесные отступы слева и справа */
+    width: 50%; /* Настройте ширину блока по вашему усмотрению */
+}
+
+.registration-title {
+    margin-left: 440px; /* Регулируйте значение в пикселях в зависимости от желаемого отступа сверху */
+}

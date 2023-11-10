@@ -1,0 +1,40 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Форма добавления{% endblock %}
+{% block content %}
+<div class="features">
+    <h1>Форма добавления</h1>
+    <form method="post">
+        <div class="xolod">
+            <img src="{% static 'main/img/1.png' %}" width="200" height="100" alt="Лого1">
+            <span class="img1"></span>
+        </div>
+        <div class="moroz">
+            <img src="{% static 'main/img/2.png' %}" width="200" height="100" alt="Лого2">
+            <span class="img2"></span>
+        </div>
+        <div class="shaf">
+            <img src="{% static 'main/img/3.png' %}" width="200" height="100" alt="Лого3">
+            <span class="img3"></span>
+        </div>
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.date }}<br>
+        {{ form.date1 }}<br>
+        {{ form.category }}<br>
+        {{ form.photo }}<br>
+        <span>{{ error }}</span>
+        <button class="btn btn-success" type="submit">Добавить продукты</button>
+    </form>
+</div>
+{% endblock %}
+<div class="form-group {% if form.date.errors %}has-error{% endif %}">
+    {{ form.date.label_tag }} {{ form.date }}
+    {% if form.date.errors %}
+        <div class="invalid-feedback">
+            {{ form.date.errors|join:", " }}
+        </div>
+    {% endif %}
+</div>
+
+

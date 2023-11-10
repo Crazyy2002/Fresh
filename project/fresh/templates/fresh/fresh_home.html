@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Продукты{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>Продукты</h1>
+    {% for el in fresh %}
+    <div class="alert alert-warning">
+        <h3><a href="{% url 'fresh-detail' el.id %}">{{ el.title }}</a></h3>
+        {% if el.category %} <!-- Проверка наличия категории у продукта -->
+            <p>Категория: {{ el.category.name }}</p> <!-- Показываем название категории -->
+
+        {% endif %}
+        <!-- Другие детали продукта, которые вы хотите показать -->
+    </div>
+    {% empty %}
+    <p>Нет доступных продуктов.</p>
+    {% endfor %}
+</div>
+{% endblock %}
