@@ -10,25 +10,26 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
           integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+  {% block header %}
+  {% endblock %}
 </head>
 <body>
 <aside>
     <h3 class="kay-pho-du-font">FreshTracker</h3>
     <img src="{% static 'main/img/logo1.png' %}" alt="Лого1">
     <ul>
-        <li><a href="{% url 'home' %}">Главная страница</a></li>
-        <li><a href="{% url 'about' %}">О нас</a></li>
-        <li><a href="{% url 'contact' %}">Контакты</a></li>
-        <li><a href="{% url 'fresh_home' %}">Продукты</a></li>
-        <li><a href="{% url 'create' %}" class="btn btn-info">Добавить продукты</a></li>
+        <li><a href="{% url 'home' %}" class="btn btn-alert menu-btn">Главная страница</a></li>
+        <li><a href="{% url 'about' %}" class="btn btn-alert menu-btn">О нас</a></li>
+        <li><a href="{% url 'contact' %}" class="btn btn-alert menu-btn">Контакты</a></li>
+        <li><a href="{% url 'fresh_home' %}" class="btn btn-alert menu-btn">Продукты</a></li>
+        <li></li>
 
 
         {% if request.user.is_authenticated %}
         <li class="nav-item">
         <li><a href="{% url 'logout_page' %}" class="btn button-danger">Выйти</a></li>
         {% else %}
-        <li><a href="{% url 'login_page' %}" class="btn btn-info">Авторизация</a></li>
-        <li><a href="{% url 'register_page' %}" class="btn btn-info">Регистрация</a></li>
+
         {% endif %}
 
 
@@ -41,5 +42,6 @@
     {% endblock %}
 </main>
 <h5 class="user-username">{{ request.user.username }}</h5>
+
 </body>
 </html>

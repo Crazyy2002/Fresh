@@ -1,11 +1,39 @@
 {% extends 'main/layout.html' %}
-
+{% load static %}
+ <link href="{% static 'main/css/index.css' %}" rel="stylesheet">
 {% block title %}{{title}}{% endblock %}
 
+  {% block header %}
+
+{% endblock %}
 {% block content %}
+<style>
+ body {
+ background-image: url('{% static 'main/img/bg1.png' %}');
+ background-repeat: no-repeat;
+ background-size: cover;
+ }
+ .back-btn, .add-btn {
+   position: absolute;
+    height: 46px;
+font-size: 1.3rem;
+   background-color: #3F51B5;
+   color: white;
+}
+.add-btn{
+    bottom: 150px; right: 100px;
+    width: 300px;
+}
+.back-btn{
+    bottom: 90px; right: 175px;
+    width: 150px;
+}
+</style>
 <div class="features">
 <h1>{{title}}</h1>
 <p>Привет"</p>
     <a href="{% url 'about' %}"><button class=" btn btn-warning">Нажми </button></a>
     </div>
+<a href="{% url 'create' %}" class="btn btn-info add-btn">ДОБАВИТЬ</a>
+<a href="{% url 'main' %}" class="btn btn-info back-btn">НАЗАД</a>
 {% endblock %}
