@@ -3,27 +3,28 @@ body {
 }
 
 aside {
+
     float: left;
-    background: #8B935E;
-    width: 25%;
-    padding: 2.5%;
+    background: #1E3C40;
+    width: 20%;
+    /*padding: 2.5%;*/
     height: 100vh;
     color: #000;
-    border-right: 5px solid #CBE12A;
+    border-right: 3px solid red;
 }
 
 aside img {
-    width: 300px;
-    float: left;
+    width: 100%;
+    height:auto;
 }
 
 aside .logo {
-
     font-size: 40px;
     margin-left: 300px;
     font-weight: bold;
     position: relative;
     top: -5px;
+    margin-bottom:30px;
 }
 
 aside h3 {
@@ -31,19 +32,37 @@ aside h3 {
     Font-size: 35px;
 }
 
-aside ul {
-align-items:center;
+ul {
+width:100%;
+    margin-left: auto;
+    margin-right: auto;
+padding:0 0 0 0;
+margin:10px auto 0 auto;
+align-self:center;
     list-style: none;
 }
 
-.menu-btn{
-    font-family: 'Montserrat', sans-serif;
+.menu-btn {
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
     height: 46px;
-    width: 120px;
-    font-size: 1.3rem;
+    width: 80%;
+    font-size: 1rem;
     border: #A5D6A7;
-    border-radius: 50px;
-    background-color: white;
+    border-radius: 5px;
+    color:black;
+    background-color: #C5E1A5;
+    display: flex;
+    font-style: normal;
+font-weight: 500;
+line-height: 28px; /* 257.143% */
+letter-spacing: 1.25px;
+text-transform: uppercase;
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    align-items: center;
+    align-content: space-around;
+    justify-content: center;
 }
 
 a {
@@ -51,11 +70,17 @@ a {
 }
 
 aside ul li {
+    justify-content:center;
+    width:100%;
     color: #000;
-    display: block;
-    margin-top: 20px;
+    display: flex;
+    margin: 20px auto 0 auto;
+    padding:0 auto;
     transition: transform .6s ease;
 }
+aside ul li a {
+    color:#C5E1A5;
+    }
 
 aside ul li:hover, aside ul a:hover {
     color: #8B0000;
@@ -67,16 +92,31 @@ main .features {
     Color: #000;
     margin-top: 100px;
     text-align: center;
-    width: 75%;
+    width: 80%;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&family=Russo+One&display=swap');
+
+.input_title, .login_form label{
+margin:0 0;
+text-align:left;
+    color: var(--grayscale-hard, #8F8F8F);
+/* Desc/Text/S */
+font-family: 'Rubik';
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 24px */
+}
+.login_form span{
+display:none;}
 
 main .features h1 {
     font-size: 50px;
 }
 
 main .features p {
-    max-width: 400px;
-    margin: 20px auto
+
 }
 
 main .mb-3 {
@@ -88,6 +128,7 @@ main .mb-3 {
 }
 
 form {
+
 
     background: #FFFFFF;
     width: 40%;
@@ -164,9 +205,56 @@ main .picture img {
 }
 
 .registration-title {
-    margin-left: 440px; /* Регулируйте значение в пикселях в зависимости от желаемого отступа сверху */
+    color: #39559D;
+    font-size: 7rem;
+    padding-top: 60px;
+    margin-left: 480px; /* Регулируйте значение в пикселях в зависимости от желаемого отступа сверху */
 }
 
 .login {
+    color: #39559D;
+    font-size: 7rem;
+    padding-top: 60px;
     margin-left: 440px; /* Регулируйте значение в пикселях в зависимости от желаемого отступа сверху */
+}
+
+
+.about_block{
+width:85%;
+border-radius: 10px;
+padding:15px;
+box-shadow: 0px 11px 15px 0px rgba(0, 0, 0, 0.20);
+margin:10px auto 0 auto;
+}
+.about_us{
+margin:20px auto;
+max-width: 1000px;
+text-align:left;
+
+color: var(--black-087, #AE3D3D);
+
+font-family:'Roboto';
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px; /* 157.143% */
+letter-spacing: 0.1px;
+}
+
+.pros{
+text-align:left;
+max-width: 1000px;
+width:80%;
+font-family:'Roboto',sans-serif;
+margin:10px auto 0 auto;
+}
+
+ .pros span{
+text-align:left;
+margin-top:0px;
+}
+
+ .pros svg{
+float:left;
+margin-left:-20px;
 }

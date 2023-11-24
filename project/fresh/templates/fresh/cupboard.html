@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+ <link href="{% static 'main/css/index.css' %}" rel="stylesheet">
+
+{% block title %}Шкаф{% endblock %}
+
+  {% block header %}
+
+{% endblock %}
+{% block content %}
+<style>
+.store_title{
+position: absolute;
+right:0%;
+top:0%;
+width:20%;
+height:150px;
+box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.20);
+border-radius:8px;
+font-size:20px;
+padding-top:60px;
+color: var(--brown-darken-4, #3E2723);
+/* v-text/body-1 */
+font-family: 'Roboto';
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+letter-spacing: 0.5px;
+}
+.store_img{
+width:20%;
+float:left;
+position:absolute;
+bottom:0; left:22%;
+}
+</style>
+<div class="features" style="margin:0 0 0 0;">
+<div class="store_title">Шкаф для хранения</div>
+<img class="store_img" src="{% static 'main/img/3.png' %}">
+</div>
+<!--<h1>{{title}}</h1>
+<p>Привет"</p>
+    <a href="{% url 'about' %}"><button class=" btn btn-warning">Нажми </button></a>
+
+<a href="{% url 'create' %}" class="btn btn-info add-btn">ДОБАВИТЬ</a>
+<a href="{% url 'home' %}" class="btn btn-info back-btn">НАЗАД</a>-->
+{% endblock %}

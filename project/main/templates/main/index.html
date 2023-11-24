@@ -1,6 +1,9 @@
 {% extends 'main/layout.html' %}
 {% load static %}
  <link href="{% static 'main/css/index.css' %}" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&family=Russo+One&display=swap" rel="stylesheet">
 {% block title %}{{title}}{% endblock %}
 
   {% block header %}
@@ -9,9 +12,7 @@
 {% block content %}
 <style>
  body {
- background-image: url('{% static 'main/img/bg1.png' %}');
- background-repeat: no-repeat;
- background-size: cover;
+
  }
  .back-btn, .add-btn {
    position: absolute;
@@ -28,12 +29,56 @@ font-size: 1.3rem;
     bottom: 90px; right: 175px;
     width: 150px;
 }
+.store{
+
+
+
+}
+.store img{
+width:25%;
+}
+.fridge img{
+transform:scale(1.1);
+height:auto;
+position: absolute;
+left:23%;
+top:24%;
+}
+.cupboard img{
+height:auto;
+position: absolute;
+right:5%;
+top:25%;
+}
+.freezer img{
+
+height:auto;
+position: absolute;
+left:47%;
+bottom:4%;
+}
+ .choose{
+color: #666;
+text-align: center;
+font-family: 'Roboto',sans-serif;
+font-size: 32px;
+font-style: normal;
+font-weight: 500;
+line-height: 36px; /* 257.143% */
+letter-spacing: 1.25px;
+text-transform: uppercase;}
+
 </style>
 <div class="features">
-<h1>{{title}}</h1>
+<h1 class="login" style="margin:-100px auto 40px auto; font-size:60px;">Продукты</h1>
+<h2 class="choose">(выберите место хранения)</h2>
+<a href="{% url 'category_detail' category_id=2 %}" class="store fridge"><img src="{% static 'main/img/2.png' %}"></a>
+<a href= class="store category_detail"><img src="{% static 'main/img/3.png' %}"></a>
+<a href= class="store freezer"><img src="{% static 'main/img/1.png' %}"></a>
+</div>
+<!--<h1>{{title}}</h1>
 <p>Привет"</p>
-    <a href="{% url 'about' %}"><button class=" btn btn-warning">Нажми </button></a>
-    </div>
+<a href="{% url 'about' %}"><button class=" btn btn-warning">Нажми </button></a>
 <a href="{% url 'create' %}" class="btn btn-info add-btn">ДОБАВИТЬ</a>
-<a href="{% url 'main' %}" class="btn btn-info back-btn">НАЗАД</a>
+<a href="{% url 'home' %}" class="btn btn-info back-btn">НАЗАД</a>-->
 {% endblock %}

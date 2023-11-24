@@ -1,11 +1,14 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from .models import Articles
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Articles, Category
 from .forms import ArticlesForm, AuthUserForm, RegisterUserForm
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
+
 
 
 # Create your views here.
@@ -66,3 +69,32 @@ class RegisterUserView(CreateView):
 
 class Logout(LogoutView):
     next_page = reverse_lazy('home')
+
+
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    products = category.articles_set.filter(category_id=2).order_by('date1')  # Сортировка по убыванию даты
+    now = timezone.now()  # Текущая дата
+    products_with_days = [
+        {'product': product, 'days_until_expiration': (product.date1 - now.date()).days}
+        for product in products
+    ]
+    return render(request, 'fresh/category_detail.html', {'category': category, 'products': products, 'now': now})
+def delete_product(request, product_id):
+    product = get_object_or_404(Articles, id=product_id)
+    product.delete()
+    return redirect('category_detail', category_id=2)
+
+def category_detail1(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    products = category.articles_set.filter(category_id=3)  # Измените на нужный идентификатор категории
+    return render(request, 'fresh/moroz.html', {'category': category, 'products': products})
+
+def delete_product1(request, product_id):
+    product = get_object_or_404(Articles, id=product_id)
+    category_id = product.category.id  # Get the category ID before deletion
+    product.delete()
+    return redirect('moroz', category_id=category_id)  # Redirect to the 'moroz' view with the correct category ID
+
+
+

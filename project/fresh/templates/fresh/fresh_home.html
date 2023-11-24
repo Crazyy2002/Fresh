@@ -4,14 +4,15 @@
 
 {% block content %}
 <div class="features">
-    <h1>Продукты</h1>
+    <h1 style="color: #139B18; font-size: 4rem; padding-right:60px;">Продукты</h1>
     {% for el in fresh %}
-    <div class="alert alert-warning">
+    <div class="alert alert-warning" style="background-color:#E6F5BA;">
         <h3><a href="{% url 'fresh-detail' el.id %}">{{ el.title }}</a></h3>
         {% if el.category %} <!-- Проверка наличия категории у продукта -->
-            <p>Категория: {{ el.category.name }}</p> <!-- Показываем название категории -->
-
+            Категория: {{ el.category.name }}<br> <!-- Показываем название категории -->
         {% endif %}
+        Изготовлен: {{ el.date }}<br>
+        Годен до: {{ el.date1 }}
         <!-- Другие детали продукта, которые вы хотите показать -->
     </div>
     {% empty %}

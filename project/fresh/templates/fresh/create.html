@@ -2,29 +2,24 @@
 {% load static %}
 {% block title %}Форма добавления{% endblock %}
 {% block content %}
-<div class="features">
-    <h1>Форма добавления</h1>
+ <div class="features">
+    <h1 style="margin-left:-100px; font-size: 5rem; color: #39559D;">Добавление продукта</h1>
     <form method="post">
-        <div class="xolod">
-            <img src="{% static 'main/img/1.png' %}" width="200" height="100" alt="Лого1">
-            <span class="img1"></span>
-        </div>
-        <div class="moroz">
-            <img src="{% static 'main/img/2.png' %}" width="200" height="100" alt="Лого2">
-            <span class="img2"></span>
-        </div>
-        <div class="shaf">
-            <img src="{% static 'main/img/3.png' %}" width="200" height="100" alt="Лого3">
-            <span class="img3"></span>
-        </div>
+
         {% csrf_token %}
+        <p class="input_title">Название продукта</p>
         {{ form.title }}<br>
+        <p class="input_title">Дата производства</p>
         {{ form.date }}<br>
+        <p class="input_title">Дата окончания срока продукта</p>
         {{ form.date1 }}<br>
+        <p class="input_title">Место хранения</p>
         {{ form.category }}<br>
-        {{ form.photo }}<br>
+        <!--{{ form.photo }} <span>Добавить фото</span><br><br>-->
+
         <span>{{ error }}</span>
-        <button class="btn btn-success" type="submit">Добавить продукты</button>
+        <button class="btn " style="background-color:#A5D6A7; transform: scale(1.5); margin-top:40px; margin-left:110px; width:240px;" type="submit">ДОБАВИТЬ</button>
+
     </form>
 </div>
 {% endblock %}
@@ -36,5 +31,3 @@
         </div>
     {% endif %}
 </div>
-
-

@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
-from django.forms import ModelForm, TextInput, DateTimeInput, Select, ClearableFileInput
+from django.forms import ModelForm, TextInput, DateInput, Select, ClearableFileInput
 from .models import Articles
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
+
+
 
 class ArticlesForm(ModelForm):
     class Meta:
@@ -12,15 +14,16 @@ class ArticlesForm(ModelForm):
         widgets = {
             "title": TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Название продукта'
             }),
-            "date": DateTimeInput(attrs={
+            "date": DateInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Дата изготовления'
+                'placeholder': 'Дата изготовления',
+                'type': 'date'  # Добавьте это поле, чтобы использовать виджет выбора даты
             }),
-            "date1": DateTimeInput(attrs={
+            "date1": DateInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Дата истечения срока годности'
+                'placeholder': 'Дата истечения срока годности',
+                'type': 'date'  # Добавьте это поле, чтобы использовать виджет выбора даты
             }),
             "category": Select(attrs={
                 'class': 'form-control'

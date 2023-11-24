@@ -1,0 +1,64 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block header %}
+    <!-- Ваши теги заголовка, если они есть -->
+{% endblock %}
+
+{% block content %}
+    <!-- Ваш контент для страницы категории -->
+    <h1>{{ category.name }}</h1>
+    {% for product in products %}
+        {% if product.category_id == 2 %}
+            <span style="{% if product.date1 < now.date %}color: red;{% endif %}">
+                <h2>{{ product.title }}</h2>
+            </span>
+            <p>Дата изготовления: {{ product.date }}</p>
+            <p>Дата истечения: {{ product.date1 }}</p>
+            {% if product.date1 < now.date %}
+                <p style="color: red;">Продукт истек</p>
+            {% endif %}
+            {% if product.photo %}
+                <img src="{{ product.photo.url }}" alt="{{ product.title }}">
+            {% endif %}
+            <!-- Кнопка удаления продукта -->
+            <form method="post" action="{% url 'delete_product' product.id %}">
+                {% csrf_token %}
+                <button type="submit">Удалить продукт</button>
+            </form>
+        {% endif %}
+    {% endfor %}
+
+    <style>
+        .store_title {
+            position: absolute;
+            right: 0%;
+            top: 0%;
+            width: 20%;
+            height: 150px;
+            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.20);
+            border-radius: 8px;
+            font-size: 20px;
+            padding-top: 60px;
+            color: var(--brown-darken-4, #3E2723);
+            font-family: 'Roboto';
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .store_img {
+            width: 30%;
+            float: left;
+        }
+    </style>
+
+    <div class="features" style="margin:0 0 0 0;">
+        <div class="store_title">Холодильник</div>
+        <img class="store_img" src="{% static 'main/img/2.png' %}">
+    </div>
+{% endblock %}

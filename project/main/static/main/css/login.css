@@ -9,7 +9,7 @@
     font-weight: 900;
     line-height: 25px;
     color: black;
-    padding: 20px 10px;
+    padding: 1000px 10px;
 }
 .authorization__form{
     padding: 20px;
@@ -34,10 +34,10 @@ input{
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #B2DFB6;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #B2DFB6;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

@@ -5,9 +5,9 @@
 {% block content %}
 <div class="features">
     <h1>{{ article.title }}</h1>
-    <p>{{ article.date }}</p>
-    <p>{{ article.date1 }}</p>
-    <p>{{ article.category }}</p>
+    <p>Изготовлен: {{ article.date }}</p>
+    <p>Годен до: {{ article.date1 }}</p>
+    <p>Категория: {{ article.category }}</p>
     <p>{{ article.photo }}</p>
     {% if article.photo %}
     <div class="picture">

@@ -3,12 +3,22 @@
 {% block content %}
 <h1 class="login">Авторизация</h1>
 <div class="col-4">
-    <form id="add_form" method="post">
+    <form id="add_form" class="login_form" method="post">
         {% csrf_token %}
         {{form}}
-        <button form="add_form" type="submit" class="btn btn-primary mt-4">Авторизоваться</button>
-        <p><a href="{% url 'home' %}">Вернуться назад</a></p>
+        <button form="add_form" type="submit" class="btn  mt-4" style="background-color:#A5D6A7; margin-left:130px; width:140px;">ВОЙТИ</button>
+        <p><a href="{% url 'home' %}" style="color:#000; margin-left:140px;" >Вернуться назад</a></p>
     </form>
 </div>
+<style>
+.login_form input{
 
+color: #B2DFB6;
+border:1px solid #B2DFB6;
+}
+
+.login_form label{
+margin-top:15px;
+}
+</style>
 {% endblock %}
