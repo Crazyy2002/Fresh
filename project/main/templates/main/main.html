@@ -15,9 +15,11 @@
 </head>
 <body>
 <aside>
-    <img src="{% static 'main/img/logo2.png' %}" alt="Лого1">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'main/img/logo2.png' %}" alt="Лого1">
+    </a>
     <ul>
-        <li><a href="{% url 'home' %}" class="menu-btn"">Главная страница</a></li>
+         <li><a href="{% url 'home' %}" class="menu-btn" style="transform:scale(1.14);">Главная страница</a></li>
         {% if user.is_authenticated %}
     <li><a href="{% url 'product' %}" class="btn-alert menu-btn">Продукты</a></li>
     <li><a href="{% url 'create' %}" class="btn-alert menu-btn">Добавить</a></li>

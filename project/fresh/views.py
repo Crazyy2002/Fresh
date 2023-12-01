@@ -9,12 +9,15 @@ from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from datetime import datetime
+from django.shortcuts import render, redirect
+from .forms import ArticlesForm
+from django.contrib import messages
 
 
 # Create your views here.
 def news_home(request):
     fresh = Articles.objects.all()
-    return render(request, 'fresh/fresh_home.html', {'fresh': fresh});
+    return render(request, 'main/product.html', {'fresh': fresh});
 
 
 class NewsDetailview(DetailView):
@@ -24,22 +27,17 @@ class NewsDetailview(DetailView):
 
 
 def create(request):
-    error = ''
     if request.method == 'POST':
         form = ArticlesForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('fresh_home')
+            messages.success(request, 'Продукт успешно добавлен!')
+            return redirect('create')
         else:
-            error = "Форма была неверной"
+            messages.error(request, 'Форма была неверной')
+
     form = ArticlesForm()
-
-    data = {
-        'form': form,
-        'error': error
-    }
-
-    return render(request, 'fresh/create.html', data)
+    return render(request, 'fresh/create.html', {'form': form})
 
 
 class LoginView(LoginView):

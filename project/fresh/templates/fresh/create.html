@@ -2,10 +2,13 @@
 {% load static %}
 {% block title %}Форма добавления{% endblock %}
 {% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
 <div class="features">
     <h1 style="margin-left:-100px; font-size: 5rem; color: #39559D;">Добавление продукта</h1>
     <form method="post">
-
 
         {% csrf_token %}
         Название продукта {{ form.title }}<br>
@@ -13,15 +16,25 @@
         Дата окончания срока годности{{ form.date1 }}<br>
         Место хранения {{ form.category }}<br>
 
-
         <span>{{ error }}</span>
         <button class="btn "
                 style="background-color:#A5D6A7; transform: scale(1.5); margin-top:40px; margin-left:110px; width:240px;"
                 type="submit">ДОБАВИТЬ
         </button>
-
     </form>
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                Toastify({
+                    text: "{{ message }}",
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    duration: 2000,
+                }).showToast();
+            </script>
+        {% endfor %}
+    {% endif %}
 </div>
+
 {% endblock %}
 <div class="form-group {% if form.date.errors %}has-error{% endif %}">
     {{ form.date.label_tag }} {{ form.date }}
