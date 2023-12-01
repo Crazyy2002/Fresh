@@ -8,57 +8,95 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Ваш контент для страницы категории -->
-    <h1>{{ category.name }}</h1>
-    {% for product in products %}
-        {% if product.category_id == 2 %}
-            <span style="{% if product.date1 < now.date %}color: red;{% endif %}">
-                <h2>{{ product.title }}</h2>
-            </span>
-            <p>Дата изготовления: {{ product.date }}</p>
-            <p>Дата истечения: {{ product.date1 }}</p>
-            {% if product.date1 < now.date %}
-                <p style="color: red;">Продукт истек</p>
+   <style>
+
+
+    h1 {
+        text-align: center;
+        color: #39559D;
+    }
+
+    .product-container {
+        border-radius: 8px;
+        margin-bottom: 20px;
+        margin-left: 300px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .product-container:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .delete-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+         margin-left: -110px;
+    }
+
+    .delete-button.expired {
+        background-color: #D32F2F;
+    }
+
+    .delete-button:hover {
+        background-color: #FF5252;
+    }
+
+    .store_img {
+        position: absolute;
+        top: 10%;
+        right: 1%;
+        width: 25%;
+    }
+    aside {
+
+    float: left;
+    background: #1E3C40;
+    width: 20%;
+    /*padding: 2.5%;*/
+    height: 300vh;
+    color: #000;
+    }
+
+</style>
+  <h1 style="text-align: center; color: #39559D;">{{ category.name }}</h1>
+{% for product_info in products_with_days %}
+  {% if product_info.product.category_id == 1 %}
+    <div style="margin-bottom: 20px;">
+        <div class="product-container" style="border: 2px solid {% if product_info.product.date1 < now %}red{% else %}green{% endif %}; padding: 10px;">
+            <h2>{{ product_info.product.title }}</h2>
+            <p>Дата изготовления: {{ product_info.product.date }}</p>
+            <p>Дата истечения: {{ product_info.product.date1 }}</p>
+            {% if product_info.product.date1 < now %}
+                <p style="color: red;">Срок годности истек</p>
+            {% else %}
+                <p>Осталось дней: {{ product_info.days_until_expiration }}</p>
             {% endif %}
-            {% if product.photo %}
-                <img src="{{ product.photo.url }}" alt="{{ product.title }}">
+            {% if product_info.product.photo %}
+                <img src="{{ product_info.product.photo.url }}" alt="{{ product_info.product.title }}">
             {% endif %}
             <!-- Кнопка удаления продукта -->
-            <form method="post" action="{% url 'delete_product' product.id %}">
+            <form method="post" action="{% url 'delete_product' product_info.product.id %}">
                 {% csrf_token %}
-                <button type="submit">Удалить продукт</button>
+                <button type="submit" class="delete-button {% if product_info.product.date1 < now %}expired{% endif %}">
+                    Удалить продукт
+                </button>
             </form>
-        {% endif %}
-    {% endfor %}
-
-    <style>
-        .store_title {
-            position: absolute;
-            right: 0%;
-            top: 0%;
-            width: 20%;
-            height: 150px;
-            box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.20);
-            border-radius: 8px;
-            font-size: 20px;
-            padding-top: 60px;
-            color: var(--brown-darken-4, #3E2723);
-            font-family: 'Roboto';
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .store_img {
-            width: 30%;
-            float: left;
-        }
-    </style>
-
-    <div class="features" style="margin:0 0 0 0;">
-        <div class="store_title">Холодильник</div>
-        <img class="store_img" src="{% static 'main/img/2.png' %}">
+        </div>
     </div>
+  {% endif %}
+{% endfor %}
+
+
+
+
+<div class="features" style="margin: 0;">
+    <img class="store_img" src="{% static 'main/img/1.png' %}">
+</div>
 {% endblock %}

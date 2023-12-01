@@ -28,9 +28,6 @@ class ArticlesForm(ModelForm):
             "category": Select(attrs={
                 'class': 'form-control'
             }),
-            "photo": ClearableFileInput(attrs={
-                'class': 'form-control'
-            }),
         }
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):

@@ -10,7 +10,7 @@ aside {
     /*padding: 2.5%;*/
     height: 100vh;
     color: #000;
-    border-right: 3px solid red;
+
 }
 
 aside img {
@@ -90,7 +90,7 @@ aside ul li:hover, aside ul a:hover {
 main .features {
     float: left;
     Color: #000;
-    margin-top: 100px;
+    margin-top: 25px;
     text-align: center;
     width: 80%;
 }
@@ -195,10 +195,34 @@ main .picture img {
     right: 0;
     margin: 10px;
     padding: 5px;
-    background-color: #ffffff; /* Можно удалить, если фон не нужен */
+    background-color: #ffffff;
+    z-index: 999;
+    transition: top 0.3s;
+    cursor: pointer; /* Добавьте этот стиль, чтобы указать, что элемент можно кликнуть */
 }
 
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 40px; /* Расположение относительно user-username */
+    right: 0;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
 
+.dropdown button {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.user-username.hidden {
+    top: -50px; /* Скрываем элемент при прокрутке вниз */
+}
 .col-4 {
     margin: 0 auto; /* Устанавливаем автоматичесные отступы слева и справа */
     width: 50%; /* Настройте ширину блока по вашему усмотрению */

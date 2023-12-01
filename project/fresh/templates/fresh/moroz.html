@@ -1,46 +1,102 @@
 {% extends 'main/layout.html' %}
 {% load static %}
- <link href="{% static 'main/css/index.css' %}" rel="stylesheet">
-{% block title %}Морозильник{% endblock %}
 
-  {% block header %}
+{% block title %}{{ category.name }}{% endblock %}
 
+{% block header %}
+    <!-- Ваши теги заголовка, если они есть -->
 {% endblock %}
+
 {% block content %}
-<style>
-.store_title{
-position: absolute;
-right:0%;
-top:0%;
-width:20%;
-height:150px;
-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.20);
-border-radius:8px;
-font-size:20px;
-padding-top:60px;
-color: var(--brown-darken-4, #3E2723);
-/* v-text/body-1 */
-font-family: 'Roboto';
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px; /* 150% */
-letter-spacing: 0.5px;
-}
-.store_img{
-width:20%;
-position:absolute;
-bottom:0; left:22%;
+   <style>
+
+
+    h1 {
+        text-align: center;
+        color: #39559D;
+    }
+
+     .product-container {
+        border-radius: 8px;
+        margin-bottom: 20px;
+        margin-left: 300px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .product-container:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .delete-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+         margin-left: -110px;
+    }
+
+    .delete-button.expired {
+        background-color: #D32F2F;
+    }
+
+    .delete-button:hover {
+        background-color: #FF5252;
+    }
+
+    .store_img {
+        position: absolute;
+        top: 12%;
+        right: 1%;
+        width: 20%;
+    }
+    aside {
+
+    float: left;
+    background: #1E3C40;
+    width: 20%;
+    /*padding: 2.5%;*/
+    height: 250vh;
+    color: #000;
+
 }
 </style>
-<div class="features" style="margin:0 0 0 0;">
-<div class="store_title">Морозильная камера</div>
-<img class="store_img" src="{% static 'main/img/1.png' %}">
-</div>
-<!--<h1>{{title}}</h1>
-<p>Привет"</p>
-    <a href="{% url 'about' %}"><button class=" btn btn-warning">Нажми </button></a>
+  <h1 style="text-align: center; color: #39559D;">{{ category.name }}</h1>
+{% for product_info in products_with_days %}
+  {% if product_info.product.category_id == 2 %}
+    <div style="margin-bottom: 20px;">
+        <div class="product-container" style="border: 2px solid {% if product_info.product.date1 < now %}red{% else %}green{% endif %}; padding: 10px;">
+            <h2>{{ product_info.product.title }}</h2>
+            <p>Дата изготовления: {{ product_info.product.date }}</p>
+            <p>Дата истечения: {{ product_info.product.date1 }}</p>
+            {% if product_info.product.date1 < now %}
+                <p style="color: red;">Срок годности истек</p>
+            {% else %}
+                <p>Осталось дней: {{ product_info.days_until_expiration }}</p>
+            {% endif %}
+            {% if product_info.product.photo %}
+                <img src="{{ product_info.product.photo.url }}" alt="{{ product_info.product.title }}">
+            {% endif %}
+            <!-- Кнопка удаления продукта -->
+            <form method="post" action="{% url 'delete_product1' product_info.product.id %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-button {% if product_info.product.date1 < now %}expired{% endif %}">
+                    Удалить продукт
+                </button>
+            </form>
+        </div>
+    </div>
+  {% endif %}
+{% endfor %}
 
-<a href="{% url 'create' %}" class="btn btn-info add-btn">ДОБАВИТЬ</a>
-<a href="{% url 'home' %}" class="btn btn-info back-btn">НАЗАД</a>-->
+
+
+
+<div class="features" style="margin: 0;">
+    <img class="store_img" src="{% static 'main/img/2.png' %}">
+</div>
 {% endblock %}

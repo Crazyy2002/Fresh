@@ -2,23 +2,23 @@
 {% load static %}
 {% block title %}Форма добавления{% endblock %}
 {% block content %}
- <div class="features">
+<div class="features">
     <h1 style="margin-left:-100px; font-size: 5rem; color: #39559D;">Добавление продукта</h1>
     <form method="post">
 
+
         {% csrf_token %}
-        <p class="input_title">Название продукта</p>
-        {{ form.title }}<br>
-        <p class="input_title">Дата производства</p>
-        {{ form.date }}<br>
-        <p class="input_title">Дата окончания срока продукта</p>
-        {{ form.date1 }}<br>
-        <p class="input_title">Место хранения</p>
-        {{ form.category }}<br>
-        <!--{{ form.photo }} <span>Добавить фото</span><br><br>-->
+        Название продукта {{ form.title }}<br>
+        Дата производства{{ form.date }}<br>
+        Дата окончания срока годности{{ form.date1 }}<br>
+        Место хранения {{ form.category }}<br>
+
 
         <span>{{ error }}</span>
-        <button class="btn " style="background-color:#A5D6A7; transform: scale(1.5); margin-top:40px; margin-left:110px; width:240px;" type="submit">ДОБАВИТЬ</button>
+        <button class="btn "
+                style="background-color:#A5D6A7; transform: scale(1.5); margin-top:40px; margin-left:110px; width:240px;"
+                type="submit">ДОБАВИТЬ
+        </button>
 
     </form>
 </div>
@@ -26,8 +26,8 @@
 <div class="form-group {% if form.date.errors %}has-error{% endif %}">
     {{ form.date.label_tag }} {{ form.date }}
     {% if form.date.errors %}
-        <div class="invalid-feedback">
-            {{ form.date.errors|join:", " }}
-        </div>
+    <div class="invalid-feedback">
+        {{ form.date.errors|join:", " }}
+    </div>
     {% endif %}
 </div>

@@ -1,12 +1,6 @@
 from django.shortcuts import render
 
 
-def index(request):
-    data = {
-        'title': 'Главная Страница',
-
-    }
-    return render(request, 'main/index.html', data)
 def main(request):
     return render(request, 'main/main.html')
 def about(request):
@@ -23,4 +17,7 @@ def news(request):
 
 def contact(request):
     return render(request, 'main/contact.html')
+
+def product(request):
+    return render(request, 'main/product.html')
 

@@ -21,20 +21,11 @@
     <img src="{% static 'main/img/logo2.png' %}" alt="Лого1">
     <ul>
         <li><a href="{% url 'home' %}" class="menu-btn" style="transform:scale(1.14);">Главная страница</a></li>
-        <li><a href="{% url 'index' %}" class="btn-alert menu-btn">Продукты</a></li>
-        <li><a href="{% url 'create' %}" class="btn-alert menu-btn">Добавить</a></li>
+        {% if user.is_authenticated %}
+    <li><a href="{% url 'product' %}" class="btn-alert menu-btn">Продукты</a></li>
+    <li><a href="{% url 'create' %}" class="btn-alert menu-btn">Добавить</a></li>
+{% endif %}
         <li><a href="{% url 'about' %}" class="btn-alert menu-btn">О нас</a></li>
-
-
-
-        {% if request.user.is_authenticated %}
-        <li class="nav-item">
-        <li><a href="{% url 'logout_page' %}" class="btn button-danger">Выйти</a></li>
-        {% else %}
-
-        {% endif %}
-
-
     </ul>
 
 </aside>
@@ -43,7 +34,39 @@
     {% block content %}
     {% endblock %}
 </main>
-<h5 class="user-username">{{ request.user.username }}</h5>
-
+<h5 class="user-username" onclick="toggleDropdown()">{{ request.user.username }}</h5>
+<div class="dropdown" id="dropdown">
+    <button onclick="logout()">Выйти</button>
+    <!-- Другие кнопки, если необходимо -->
+</div>
 </body>
 </html>
+<script>
+    var lastScrollTop = 0;
+
+    window.addEventListener("scroll", function() {
+        var st = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (st > lastScrollTop) {
+            // Прокрутка вниз
+            document.querySelector('.user-username').classList.add('hidden');
+        } else {
+            // Прокрутка вверх
+            document.querySelector('.user-username').classList.remove('hidden');
+        }
+
+        lastScrollTop = st;
+    });
+    function toggleDropdown() {
+    var dropdown = document.getElementById('dropdown');
+    dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+}
+
+function logout() {
+    // Добавьте код для выхода пользователя
+    alert('Выход пользователя');
+    // Например, редирект на страницу выхода
+    window.location.href = "{% url 'logout_page' %}";
+}
+</script>
+
