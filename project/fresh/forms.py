@@ -3,33 +3,44 @@ from django.forms import ModelForm, TextInput, DateInput, Select, ClearableFileI
 from .models import Articles
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
+from datetime import datetime
 
 
 
-class ArticlesForm(ModelForm):
+class ArticlesForm(forms.ModelForm):
     class Meta:
         model = Articles
         fields = ['title', 'date1', 'date', 'category', 'photo']
 
         widgets = {
-            "title": TextInput(attrs={
-                'class': 'form-control',
-            }),
-            "date": DateInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Дата изготовления',
-                'type': 'date'  # Добавьте это поле, чтобы использовать виджет выбора даты
-            }),
-            "date1": DateInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Дата истечения срока годности',
-                'type': 'date'  # Добавьте это поле, чтобы использовать виджет выбора даты
-            }),
-            "category": Select(attrs={
-                'class': 'form-control'
-            }),
+            "title": forms.TextInput(attrs={'class': 'form-control'}),
+            "date": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            "date1": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            "category": forms.Select(attrs={'class': 'form-control'}),
         }
 
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        date1 = cleaned_data.get('date1')
+
+        if date and date1:
+            # Преобразование строковых значений дат в объекты datetime
+            date = datetime.strptime(str(date), '%Y-%m-%d').date()
+            date1 = datetime.strptime(str(date1), '%Y-%m-%d').date()
+
+            if date > date1:
+                self.add_error('date', 'Дата изготовления не может быть больше даты истечения срока годности')
+                self.add_error('date1', 'Дата изготовления не может быть больше даты истечения срока годности')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        date1 = cleaned_data.get('date1')
+
+        if date and date1 and date > date1:
+            self.add_error('date', 'Дата изготовления не может быть больше даты истечения срока годности')
+            self.add_error('date1', 'Дата изготовления не может быть больше даты истечения срока годности')
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:
         model = User

@@ -41,13 +41,13 @@ transform:scale(1.1);
 height:auto;
 position: absolute;
 left:23%;
-top:23%;
+top:29%;
 }
 .cupboard img{
 height:auto;
 position: absolute;
 right:5%;
-top:20%;
+top:25%;
 }
 .freezer img{
 
@@ -55,7 +55,7 @@ height:auto;
 position: absolute;
 left:49%;
 bottom:4%;
- top:55%;
+ top:65%;
   width: 25%;
 }
  .choose{
@@ -74,14 +74,14 @@ text-transform: uppercase;}
     background: #1E3C40;
     width: 20%;
     /*padding: 2.5%;*/
-    height: 105vh;
+    height: 100vh;
     color: #000;
 
 }
 
 </style>
 <div class="features">
-<h1 class="login" style="margin:-100px auto 40px auto; font-size:60px;">Продукты</h1>
+<h1 class="login" style="margin:-70px auto 40px auto; font-size:60px;">Продукты</h1>
 <h2 class="choose">(выберите место хранения)</h2>
 <a href="{% url 'category_detail' category_id=1  %}" class="store fridge"><img src="{% static 'main/img/2.png' %}"></a>
 <a href="{% url 'cupboard' category_id=3 %}" class="store cupboard "><img src="{% static 'main/img/3.png' %}"></a>

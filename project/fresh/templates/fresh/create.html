@@ -12,8 +12,14 @@
 
         {% csrf_token %}
         Название продукта {{ form.title }}<br>
-        Дата производства{{ form.date }}<br>
-        Дата окончания срока годности{{ form.date1 }}<br>
+        Дата производства
+        <div class="form-group">
+            <input type="date" name="date" id="id_date" class="form-control" value="{{ form.date.value }}" min="2021-01-01">
+        </div>
+        Дата окончания срока годности
+        <div class="form-group">
+            <input type="date" name="date1" id="id_date1" class="form-control" value="{{ form.date1.value }}" min="" max="">
+        </div>
         Место хранения {{ form.category }}<br>
 
         <span>{{ error }}</span>
@@ -35,12 +41,33 @@
     {% endif %}
 </div>
 
+<script>
+    // Получаем элемент даты производства
+    var dateInput = document.getElementById('id_date');
+    // Получаем элемент даты окончания срока годности
+    var date1Input = document.getElementById('id_date1');
+
+    // Устанавливаем обработчик изменения значения
+    dateInput.addEventListener('change', function () {
+        // Получаем выбранную дату
+        var selectedDate = new Date(dateInput.value);
+
+        // Устанавливаем максимальную дату для date (текущая дата)
+        var currentDate = new Date();
+        dateInput.setAttribute('max', currentDate.toISOString().split('T')[0]);
+
+        // Устанавливаем минимальную и максимальную даты для date1 (от выбранной даты до 3 лет вперед)
+        var minDate1 = new Date(selectedDate);
+        var maxDate1 = new Date(selectedDate);
+        maxDate1.setFullYear(maxDate1.getFullYear() + 3);
+
+        date1Input.setAttribute('min', selectedDate.toISOString().split('T')[0]);
+        date1Input.setAttribute('max', maxDate1.toISOString().split('T')[0]);
+
+        // Устанавливаем начальное значение для date1Input, если оно не было установлено
+        if (!date1Input.value) {
+            date1Input.value = selectedDate.toISOString().split('T')[0];
+        }
+    });
+</script>
 {% endblock %}
-<div class="form-group {% if form.date.errors %}has-error{% endif %}">
-    {{ form.date.label_tag }} {{ form.date }}
-    {% if form.date.errors %}
-    <div class="invalid-feedback">
-        {{ form.date.errors|join:", " }}
-    </div>
-    {% endif %}
-</div>

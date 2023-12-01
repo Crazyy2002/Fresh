@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 class Category(models.Model):
@@ -24,8 +25,14 @@ class Articles(models.Model):
         self.current_date = timezone.now().date()
         super().save(*args, **kwargs)
 
+    def clean(self):
+        # Вызываем clean родительского класса для проверки полей модели
+        super().clean()
+
+        # Проверяем, что date не больше date1
+        if self.date and self.date1 and self.date > self.date1:
+            raise ValidationError({'date': 'Дата изготовления не может быть больше даты истечения срока годности'})
+
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
-
-
